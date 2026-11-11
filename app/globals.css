@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --fg: #0d0d0d;
+  --muted: #5d5d5d;
+  --sidebar: #f9f9f9;
+  --line: #e5e5e5;
+  --bubble: #f4f4f4;
+  --active: #ececec;
+  --hover: #ececec;
+  --accent: #0d0d0d;
+  --on-accent: #ffffff;
+  --code: #f9f9f9;
+  --overlay: rgba(0, 0, 0, 0.4);
+  color-scheme: light;
+}
+
+html.dark {
+  --bg: #212121;
+  --fg: #ececec;
+  --muted: #b4b4b4;
+  --sidebar: #181818;
+  --line: #383838;
+  --bubble: #303030;
+  --active: #2f2f2f;
+  --hover: #2a2a2a;
+  --accent: #ececec;
+  --on-accent: #0d0d0d;
+  --code: #171717;
+  --overlay: rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-sidebar: var(--sidebar);
+  --color-line: var(--line);
+  --color-bubble: var(--bubble);
+  --color-active: var(--active);
+  --color-hover: var(--hover);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-code: var(--code);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: #c9dcf8;
+  color: #0d0d0d;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+@keyframes assist-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+.assist-caret::after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: var(--fg);
+  vertical-align: middle;
+  animation: assist-blink 1s infinite;
+}
+
+@keyframes assist-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.assist-fade {
+  animation: assist-fade 160ms ease-out;
 }

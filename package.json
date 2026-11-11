@@ -2,6 +2,17 @@
   "name": "chatgpt-clone",
   "version": "0.1.0",
   "private": true,
+  "description": "Assist: a ChatGPT clone built with Next.js 16 and Claude Code.",
+  "license": "MIT",
+  "author": "Suhas Bhairav (https://suhasbhairav.com)",
+  "homepage": "https://suhasbhairav.com/saas-clones/chatgpt-clone",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suhasbhairav/chatgpt-clone.git"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
